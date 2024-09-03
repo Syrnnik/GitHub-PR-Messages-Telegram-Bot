@@ -3,18 +3,19 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-from constants.bot_commands import start_command
-from keyboards.inline.example import example_inline_keyboard
-from keyboards.reply.example import example_reply_keyboard
-from states.example import ExampleState
+from bot.constants.bot_commands import login_command
+from bot.keyboards.inline import example_inline_keyboard
+from bot.keyboards.reply.example import example_reply_keyboard
+from bot.states.user import UserState
 
 start_router = Router(name=__name__)
 
 
-@start_router.message(Command(start_command))
-async def start(message: Message, state: FSMContext):
+@start_router.message(Command(login_command))
+async def login(message: Message, state: FSMContext):
     # Set user state
-    await state.set_state(ExampleState.example)
+    await state.set_state(UserState.logging)
+
     # Answer to user message
     # With inline keyboard
     await message.answer("Hello!", reply_markup=example_inline_keyboard)

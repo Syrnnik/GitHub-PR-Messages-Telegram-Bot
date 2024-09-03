@@ -2,9 +2,9 @@ import asyncio
 
 from aiogram import Bot
 
-from configs.loader import dp, bot
-from utils.bot.commands import set_bot_commands
-from utils.bot.routers import set_bot_routers
+from bot.configs.loader import dp, bot
+from bot.utils.bot.commands import set_bot_commands
+from bot.utils.bot.routers import set_bot_routers
 
 
 async def on_startup(bot: Bot):

@@ -1,6 +1,6 @@
 from aiogram import Bot
 
-from constants.bot_commands import start_command
+from bot.constants.bot_commands import start_command
 
 
 async def set_bot_commands(bot: Bot):

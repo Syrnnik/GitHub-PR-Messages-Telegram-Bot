@@ -1,2 +1,7 @@
 aiogram
 python-dotenv
+fastapi
+pydantic
+uvicorn
+PyGithub
+sqlmodel
