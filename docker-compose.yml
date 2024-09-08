@@ -12,7 +12,6 @@ services:
     volumes:
       - ./src:/app/src
       - ./.env:/app/.env
-      - db:${DATA_FOLDER_PATH}
 
   bot:
     build:
@@ -22,7 +21,6 @@ services:
     volumes:
       - ./src:/app/src
       - ./.env:/app/.env
-      - db:${DATA_FOLDER_PATH}
 
   dbeaver:
     image: dbeaver/cloudbeaver
@@ -31,6 +29,14 @@ services:
     volumes:
       - dbeaver:/opt/cloudbeaver/workspace
       - db:${DATA_FOLDER_PATH}
+
+  db:
+    image: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 volumes:
   db:

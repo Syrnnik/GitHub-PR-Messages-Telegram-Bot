@@ -13,7 +13,6 @@ router = APIRouter()
 @router.post("")
 async def pull_request_webhook(payload: WebhookPayload):
     pull_request = payload.pull_request
-    # number = payload.number
 
     url = pull_request.html_url
     description = pull_request.body
@@ -25,16 +24,6 @@ async def pull_request_webhook(payload: WebhookPayload):
         pull_request_body=description,
         by_user=by_user,
     )
-
-    # ! Not Working
-    # await storage.set_data(
-    #     ADMIN_TG_ID,
-    #     {
-    #         "pull_request_url": url,
-    #         "pull_request_body": description,
-    #         "user": user,
-    #     },
-    # )
 
     keyboard = get_add_task_inline_keyboard()
 

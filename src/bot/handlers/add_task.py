@@ -10,7 +10,7 @@ from bot.states.user import UserState
 router = Router()
 
 
-@router.message(UserState.task_add)
+@router.message(UserState.add_task)
 async def add_task(message: Message, state: FSMContext):
     await message.delete()
 
@@ -44,3 +44,4 @@ async def add_task(message: Message, state: FSMContext):
         parse_mode=ParseMode.HTML,
         disable_web_page_preview=True,
     )
+    await state.clear()

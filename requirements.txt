@@ -6,3 +6,5 @@ uvicorn
 PyGithub
 sqlmodel
 loguru
+psycopg2-binary
+requests
