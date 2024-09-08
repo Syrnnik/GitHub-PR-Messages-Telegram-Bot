@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+ADMIN_TG_ID = os.getenv('ADMIN_TG_ID')
+
 DB_CON_STR = os.getenv('DB_CON_STR')
 
 GITHUB_OAUTH_CLIENT_ID = os.getenv('GITHUB_OAUTH_CLIENT_ID')

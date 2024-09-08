@@ -1,9 +1,11 @@
 from aiogram import Dispatcher
 
-from bot.handlers.start import start_router
+from bot.callbacks import all_callback_routers
+from bot.handlers import all_handler_routers
 
 
 def set_bot_routers(dispatcher: Dispatcher):
     dispatcher.include_routers(
-        start_router,
+        *all_handler_routers,
+        *all_callback_routers,
     )

@@ -4,7 +4,7 @@ from api.config.db import get_session
 from api.scheme.user import User
 
 
-def get_user_by_tg_id(tg_id: int) -> User:
+def get_user_by_tg_id(tg_id: int) -> User | None:
     with get_session() as session:
         st = select(User).where(User.telegram_id == tg_id)
         user = session.exec(st).first()

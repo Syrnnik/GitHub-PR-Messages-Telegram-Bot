@@ -9,4 +9,4 @@ app.include_router(pull_request_webhook.router, prefix="/pull_request_webhook", 
 app.include_router(oauth_callback.router, prefix="/oauth_callback", tags=["OAuth Callback"])
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run("api_main:app", host="0.0.0.0", port=8080, reload=True)

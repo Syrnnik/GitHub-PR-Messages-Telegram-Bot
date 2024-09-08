@@ -6,9 +6,9 @@ services:
     build:
       context: .
       dockerfile: ./src/api.Dockerfile
-    command: python3 /app/src/api.py
+    command: python3 /app/src/api_main.py
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./src:/app/src
       - ./.env:/app/.env
@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: ./src/bot.Dockerfile
-    command: python3 /app/src/bot.py
+    command: python3 /app/src/bot_main.py
     volumes:
       - ./src:/app/src
       - ./.env:/app/.env

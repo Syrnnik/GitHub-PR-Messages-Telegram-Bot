@@ -11,7 +11,7 @@ router = APIRouter()
 TOKEN_URL = "https://github.com/login/oauth/access_token"
 
 
-@router.post("")
+@router.get("")
 async def oauth_callback(
     code: str,
     # State is user tg id
@@ -36,25 +36,25 @@ async def oauth_callback(
     response_json = response.json()
 
     if "access_token" in response_json:
-        github_access_token = response_json['access_token']
+        access_token = response_json['access_token']
 
         user = get_user_by_tg_id(state)
         if not user:
             user = User(
                 telegram_id=state,
-                github_access_token=github_access_token,
+                github_access_token=access_token,
             )
             create_user(user)
         else:
-            user.github_access_token = github_access_token
+            user.github_access_token = access_token
             update_user(user)
-
-        return RedirectResponse(
-            url=BOT_URL,
-        )
 
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Authorization failed.",
         )
+
+    return RedirectResponse(
+        url=BOT_URL,
+    )
