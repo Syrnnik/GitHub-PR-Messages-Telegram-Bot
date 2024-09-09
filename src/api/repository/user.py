@@ -6,8 +6,14 @@ from api.scheme.user import User
 
 def get_user_by_tg_id(tg_id: int) -> User | None:
     with get_session() as session:
-        st = select(User).where(User.telegram_id == tg_id)
+        st = select(User).where(User.telegram_id == str(tg_id))
         user = session.exec(st).first()
+        return user
+
+
+def get_user_by_id(user_id: int) -> User | None:
+    with get_session() as session:
+        user = session.get(User, user_id)
         return user
 
 

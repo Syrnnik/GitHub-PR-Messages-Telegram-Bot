@@ -1,6 +1,5 @@
 from github import Github
 from github.Auth import Token
-from loguru import logger
 
 from bot.configs.env import GITHUB_WEBHOOK_URL
 
@@ -31,12 +30,17 @@ def get_user_repos_list(gh: Github):
     return repos_list
 
 
+def get_repo_by_name(gh: Github, repo_name: str):
+    repo = gh.get_user().get_repo(repo_name)
+    return repo
+
+
 def get_repo_hook_by_name(gh: Github, selected_repo: str):
     repo = gh.get_repo(full_name_or_id=selected_repo)
     hooks_list = repo.get_hooks()
     for hook in hooks_list:
-        if hook.url.lower() == GITHUB_WEBHOOK_URL:
-            logger.info(hook)
+        webhook_url = hook.config['url']
+        if webhook_url.lower() == GITHUB_WEBHOOK_URL.lower():
             return hook
 
 

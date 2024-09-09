@@ -16,7 +16,7 @@ router = Router()
 async def start(message: Message, state: FSMContext):
     await state.clear()
 
-    user_id = message.from_user.id
+    user_id = message.chat.id
 
     user = get_user_by_tg_id(user_id)
     if not user:

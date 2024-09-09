@@ -41,7 +41,7 @@ async def oauth_callback(
         user = get_user_by_tg_id(state)
         if not user:
             user = User(
-                telegram_id=state,
+                telegram_id=str(state),
                 github_access_token=access_token,
             )
             create_user(user)
